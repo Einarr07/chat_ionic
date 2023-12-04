@@ -1,3 +1,4 @@
+<!-- home.page.html -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -15,11 +16,10 @@
 
   <div id="container">
     <img src="assets/Foto de presentación.jpg" alt="Mateo">
-
     <img src="assets/Presentación_Nicole.jpeg" alt="Nicole">
+    <img src="assets/Presentación_Erick.jpg" alt="Erick">
 
-    <ion-button href="" target="_blank" rel="noreferer" expand="full">Chat</ion-button>
+    <!-- Utiliza el evento (click) para llamar a la función que manejará la navegación -->
+    <ion-button (click)="goToLoginPage()" expand="full">Login</ion-button>
   </div>
-  
-  
 </ion-content>

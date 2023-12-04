@@ -10,7 +10,11 @@ import { ChatService } from '../../services/chat.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentialForm: FormGroup;
+  // Inicializa credentialForm directamente al declararla
+  credentialForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -18,15 +22,14 @@ export class LoginPage implements OnInit {
     private alertController: AlertController,
     private loadingController: LoadingController,
     private chatService: ChatService
-  ) {
-    this.credentialForm = this.createCredentialForm();
-  }
+  ) {}
 
   ngOnInit() {
-    this.credentialForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    // Elimina esta línea si deseas que el FormGroup se inicialice en el constructor
+    // this.credentialForm = this.fb.group({
+    //   email: ['', [Validators.required, Validators.email]],
+    //   password: ['', [Validators.required, Validators.minLength(6)]]
+    // });
   }
 
   async signUp() {

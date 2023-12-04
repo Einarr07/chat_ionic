@@ -10,12 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-  @ViewChild(IonContent) content: IonContent;
+  @ViewChild(IonContent, { static: true }) content!: IonContent;
 
-  messages: Observable<any[]>;
+  messages: Observable<any[]> | undefined; // Asigna un valor por defecto o usa el operador de tipos "!" si estás seguro de que estará definido.
+
   newMsg = '';
 
-  constructor(private chatService: ChatService, private router: Router) { }
+  constructor(private chatService: ChatService, private router: Router) {
+    // Puedes asignar un valor predeterminado o inicializarlo aquí si es necesario.
+    // this.messages = defaultValue;
+  }
 
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
@@ -33,5 +37,4 @@ export class ChatPage implements OnInit {
       this.router.navigateByUrl('/', { replaceUrl: true });
     });
   }
-
 }
